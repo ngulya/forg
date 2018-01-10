@@ -91,9 +91,10 @@ modelN.load_weights("model.h5")
 modelN.compile(loss="mean_squared_error", optimizer="SGD", metrics=["accuracy"])
 print(modelN.summary())
 
-yn = input("Train model Y-Yes or N-No: ")
+# yn = input("Train model Y-Yes or N-No: ")
+yn = 'y'
 if yn == 'y' or yn == 'Y':
-	modelN.fit(Big_train, Big_target,epochs=20000, verbose=1) #2.1907e-05
+	modelN.fit(Big_train, Big_target,epochs=70000, verbose=1) #2.1907e-05
 	resultN = modelN.predict(test_train)
 	z = len(resultN) - 1
 	saf=  z
@@ -157,9 +158,8 @@ if yn == 'y' or yn == 'Y':
 # print(ks[2], a2 * 100000)
 # print(ks[3], a3 * 100000)
 
-# 5.6 e-06
-# [ 15666.85438156] 14427.87
-# [ 15546.50813341] 12629.81
-# [ 15398.14025164] 13860.14
-# [ 15414.99942541] 13202.76
-
+# 3.487e-06
+# [14476.58836842] 14427.87
+# [14169.98058558] 12629.81
+# [13673.41279984] 13860.14
+# [13685.95212698] 13202.76
