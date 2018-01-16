@@ -1,11 +1,12 @@
 import pandas as pd
 import numpy as np
 import os
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from keras.models import model_from_json
+from keras.datasets import mnist
+from keras.models import Sequential
+from keras.layers import Dense
 
 maxar = 20180505
 minar = 0
@@ -76,8 +77,8 @@ modelN.load_weights("model.h5")
 modelN.compile(loss="mean_squared_error", optimizer="SGD", metrics=["accuracy"])
 print(modelN.summary())
 
-# yn = input("Train model Y-Yes or N-No: ")
-yn = 'y'
+yn = input("Train model Y-Yes or N-No: ")
+# yn = 'y'
 if yn == 'y' or yn == 'Y':
 	modelN.fit(Big_train, Big_target,epochs=5, verbose=1) #2.1907e-05
 	resultN = modelN.predict(test_train)
@@ -114,6 +115,15 @@ if yn == 'y' or yn == 'Y':
 		with open("model.json", "w") as json_file:
 			json_file.write(model_json)
 		modelN.save_weights("model.h5")
+# else:
+	# modelN = Sequential()
+	# modelN.add(Dense(30, input_dim = 30, activation="relu", kernel_initializer="normal"))
+	# modelN.add(Dense(15, activation="relu", kernel_initializer="normal"))
+	# modelN.add(Dense(1, activation="relu", kernel_initializer="normal"))
+	# modelN.compile(loss="mean_squared_error", optimizer="SGD", metrics=["accuracy"])
+	# print(modelN.summary())
+	# modelN.fit(Big_train, Big_target,epochs=1300, verbose=1)
+	# resultN = modelN.predict(test_train)
 
 # 3.149e-06
 # [14333.67729187] 14427.87
