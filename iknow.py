@@ -1,26 +1,11 @@
 import pandas as pd
 import numpy as np
-import seaborn as sn
-import matplotlib.pyplot as plt
 import os
-import datetime
-import copy
-import warnings
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
-from sklearn import datasets, linear_model
-import scipy.sparse.csr as csr
-from sklearn import metrics
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import mean_squared_error, accuracy_score
+from sklearn.metrics import mean_squared_error
 from keras.models import model_from_json
-from keras.datasets import mnist
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.utils import np_utils
 
 maxar = 20180505
 minar = 0
@@ -94,7 +79,7 @@ print(modelN.summary())
 # yn = input("Train model Y-Yes or N-No: ")
 yn = 'y'
 if yn == 'y' or yn == 'Y':
-	modelN.fit(Big_train, Big_target,epochs=70000, verbose=1) #2.1907e-05
+	modelN.fit(Big_train, Big_target,epochs=5, verbose=1) #2.1907e-05
 	resultN = modelN.predict(test_train)
 	z = len(resultN) - 1
 	saf=  z
@@ -129,37 +114,9 @@ if yn == 'y' or yn == 'Y':
 		with open("model.json", "w") as json_file:
 			json_file.write(model_json)
 		modelN.save_weights("model.h5")
-# else:
-	# modelN = Sequential()
-	# modelN.add(Dense(30, input_dim = 30, activation="relu", kernel_initializer="normal"))
-	# modelN.add(Dense(15, activation="relu", kernel_initializer="normal"))
-	# modelN.add(Dense(1, activation="relu", kernel_initializer="normal"))
-	# modelN.compile(loss="mean_squared_error", optimizer="SGD", metrics=["accuracy"])
-	# print(modelN.summary())
-	# modelN.fit(Big_train, Big_target,epochs=1300, verbose=1)
-	# resultN = modelN.predict(test_train)
 
-# b0 = pd.read_csv("./0.csv")
-# b1 = pd.read_csv("./1.csv")
-# b2 = pd.read_csv("./2.csv")
-# b3 = pd.read_csv("./3.csv")
-# b0['Close Price'] = b0['Close Price'] / 100000
-# b1['Close Price'] = b1['Close Price'] / 100000
-# b2['Close Price'] = b2['Close Price'] / 100000
-# b3['Close Price'] = b3['Close Price'] / 100000
-# a0 = b0['Close Price'][30]
-# a1 = b1['Close Price'][30]
-# a2 = b2['Close Price'][30]
-# a3 = b3['Close Price'][30]
-# mas0 = bugaga(b0, b1, b2, b3)
-# ks = modelN.predict(mas0) * 100000
-# print(ks[0], a0 * 100000)
-# print(ks[1], a1 * 100000)
-# print(ks[2], a2 * 100000)
-# print(ks[3], a3 * 100000)
-
-# 3.487e-06
-# [14476.58836842] 14427.87
-# [14169.98058558] 12629.81
-# [13673.41279984] 13860.14
-# [13685.95212698] 13202.76
+# 3.149e-06
+# [14333.67729187] 14427.87
+# [13862.21796274] 12629.81
+# [13174.53682423] 13860.14
+# [13313.0133152] 13202.76
